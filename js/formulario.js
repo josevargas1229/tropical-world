@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       var confirma = document.getElementById("confirma");
       confirma.textContent = texto;
+      
     }
   });
 });
