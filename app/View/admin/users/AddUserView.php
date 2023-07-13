@@ -24,6 +24,12 @@
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+"/>
     </p>
     <p>
+      <label for="rfc">RFC : </label><br />
+      <input type="text" name="rfc" id="rfc" placeholder="RFC" required
+                    minlength="13" maxlength="13"
+                    pattern="[A-Z]{4}[0-9]{6}[A-Z0-9]{3}"/>
+    </p>
+    <p>
       <label for="email">Email : </label><br />
       <input
         type="email"
@@ -34,7 +40,6 @@
         pattern="[a-zA-Z0-9._]+@[a-zA-Z.]+"
       />
     </p>
-    
     <p>
         <label for="usuario">Usuario : </label><br />
         <input type="text" name="usuario" id="usuario" placeholder="Usuario" required minlength="3" maxlength="10" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚÑñ ]+"/>
@@ -69,6 +74,7 @@
     <p>
       <label for="localidad">Localidad : </label><br>
       <select name="localidad" id="localidad">
+        <option value="0">Seleccione...</option>
           <?php 
           foreach($localidades as $localidad){
           echo "<option value='".$localidad['id_localida']."'>".$localidad['nombre']."</option>";
@@ -79,11 +85,8 @@
   <p>
     <label for="colonia">Colonia : </label><br>
     <select name="colonia" id="colonia">
-        <?php 
-        foreach($colonias as $colonia){
-        echo "<option value='".$colonia['id_colonia']."'>".$colonia['nombre']."</option>";
-        }
-        ?>
+      <option value="0">Seleccione...</option>
+        
     </select>
 </p>
     <p>
@@ -102,4 +105,36 @@
     </p>
     <p><input type="submit" value="Add User"></p>
   </form>
+  <script>
+  var localidad = document.getElementById('localidad');
+  localidad.addEventListener("change", function() {
+  var localidadValue = localidad.value;
+  
+  fetch('http://localhost/proyecto/?c=UserController&m=getColonias', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: 'localidadID=' + encodeURIComponent(localidadValue)
+  })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      var coloniaSelect = document.getElementById('colonia');
+      coloniaSelect.innerHTML = ""; // Limpia las opciones existentes antes de agregar nuevas opciones
+
+      data.forEach(function(elemento) {
+        var option = document.createElement('option');
+        option.text = elemento.nombre;
+        option.value = elemento.id_colonia;
+        coloniaSelect.appendChild(option);
+      });
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+    });
+});
+
+</script>
 </div>

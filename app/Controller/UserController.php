@@ -20,6 +20,15 @@ include_once('app/Model/UserModel.php');
             $vista='app/View/admin/users/AddUserView.php';
             include_once('app/View/PlantillaView.php');
         }
+        public function getColonias(){
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+            $localidad=$_POST['localidadID'];
+            }
+            $modelo= new UserModel();
+            $colonias=$modelo->getColonia($localidad);
+            header('Content-Type: application/json');
+            echo json_encode($colonias);
+        }
 
         //creamos el metodo para agregar un usuario
         public function Add(){
@@ -37,7 +46,7 @@ include_once('app/Model/UserModel.php');
                         'calle'=>$_POST['calle'],
                         'nInt'=>$_POST['nInt'],
                         'nExt'=>$_POST['nExt'],
-                        'id_localidad'=>$_POST['localidad'],
+                        'rfc'=>$_POST['rfc'],
                         'id_colonia'=>$_POST['colonia']
                     );
                     //llamamos al metodo del modelo que agrega al usuario a la base de datos
@@ -63,7 +72,9 @@ include_once('app/Model/UserModel.php');
                 $modelo=new UserModel();
                 $localidades=$modelo->getLocalidad();
                 $modelo=new UserModel();
-                $colonias=$modelo->getColonia();
+                $direccion=$modelo->getDireccionByID($cliente['id_direccion']);
+                $modelo=new UserModel();
+                $colonias=$modelo->getColoniaByID($direccion['id_colonia']);
                 //llamamos a la vista de editar usuario
                 $vista='app/View/admin/users/EditUserView.php';
                 include_once('app/View/PlantillaView.php');
@@ -84,7 +95,7 @@ include_once('app/Model/UserModel.php');
                     'calle'=>$_POST['calle'],
                     'nInt'=>$_POST['nInt'],
                     'nExt'=>$_POST['nExt'],
-                    'id_localidad'=>$_POST['localidad'],
+                    'rfc'=>$_POST['rfc'],
                     'id_colonia'=>$_POST['colonia']
                 );
                 //llamamos al metodo del modelo que actualiza los datos del usuario
@@ -107,6 +118,36 @@ include_once('app/Model/UserModel.php');
                 $modelo->deleteRow($id);
                 //redireccionamos al index de usuarios
                 header("Location:http://localhost/proyecto/?c=UserController&m=index");
+            }
+        }
+        public function CallFormLogin(){
+            
+            session_start();
+            if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
+            //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
+            $vista="app/View/admin/LoginView.php";
+                include_once("app/View/PlantillaView.php");
+            }else{
+                $vista="app/View/admin/LoginView.php";
+                include_once("app/View/Plantilla2View.php");
+            }
+        }
+        public function Login(){
+            if($_SERVER['REQUEST_METHOD']=='POST'){
+                $this->modelo=new UserModel();
+                $usuario=$this->modelo->getCredentials($_POST['user'],$_POST['password']);
+                if($usuario==false){
+                    $vista="app/View/admin/LoginView.php";
+                    include_once("app/View/Plantilla2View.php");
+                }else{
+                    session_start();
+                    $_SESSION['logedin']=true;
+                    $_SESSION['avatar']=$usuario['avatar'];
+                    $_SESSION['nombre']=$usuario['nombre'];
+
+                    $vista="app/View/HomeView.php";
+                    include_once("app/View/PlantillaView.php");
+                }
             }
         }
     }

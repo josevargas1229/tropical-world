@@ -66,9 +66,9 @@
             //arrojamos la respuesta de nuestra consulta "users"
             return $localidades;
         }
-        public function getColonia(){
+        public function getColonia($localidad){
             //creamos la consulta a ejecutar
-            $sql='SELECT * FROM colonias';
+            $sql='SELECT * FROM colonias where id_localidad='.$localidad;
             //obtenemos la conexión a la base de datos
             $connection=$this->dbconnection->getConnection();
             //ejecutar la consulta
@@ -122,6 +122,42 @@
             //arrojamos la respuesta de nuestra consulta "users"
             return $user;
         }
+        public function getDireccionByID($id){
+            //creamos la consulta a ejecutar
+            $sql='SELECT * FROM direcciones WHERE id_direccion='.$id;
+            //obtenemos la conexión a la base de datos
+            $connection=$this->dbconnection->getConnection();
+            //ejecutar la consulta
+            $result=$connection->query($sql);
+            //verificamos que traiga datos y los sacamos a una variable
+            if($result && $result->num_rows>0){
+                $user=$result->fetch_assoc();
+            }else{
+                $user=false;
+            }
+            //cerramos la conexión a la base de datos
+            $this->dbconnection->closeConnection();
+            //arrojamos la respuesta de nuestra consulta "users"
+            return $user;
+        }
+        public function getColoniaByID($id){
+            //creamos la consulta a ejecutar
+            $sql='SELECT * FROM colonias WHERE id_colonia='.$id;
+            //obtenemos la conexión a la base de datos
+            $connection=$this->dbconnection->getConnection();
+            //ejecutar la consulta
+            $result=$connection->query($sql);
+            //verificamos que traiga datos y los sacamos a una variable
+            if($result && $result->num_rows>0){
+                $colonia=$result->fetch_assoc();
+            }else{
+                $colonia=false;
+            }
+            //cerramos la conexión a la base de datos
+            $this->dbconnection->closeConnection();
+            //arrojamos la respuesta de nuestra consulta "colonias"
+            return $colonia;
+        }
 
         //método para validar un logueo (usuario y contraseña)
         public function getCredentials($us,$ps){
@@ -165,7 +201,7 @@
         //método para editar un usuario
         public function updateUser($userData){
             //paso1: creamos la consulta
-            $sql="CALL update_user('".$userData['id_usuario']."','".$userData['contrasena']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",".$userData['id_localidad'].")";            
+            $sql="CALL userx('','','".$userData['contrasena']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['rfc']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",".$userData['id'].",'edit')";        
             //paso2: conectamos a la base de datos
             $connection=$this->dbconnection->getConnection();
             //paso3: ejecutamos la consulta

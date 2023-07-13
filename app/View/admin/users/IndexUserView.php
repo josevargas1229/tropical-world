@@ -1,4 +1,4 @@
-<div>
+<div class="content-userView">
     <h1>Homeview de usuarios</h1>
     <br>
     <p>
@@ -11,6 +11,7 @@
             <td>Usuario</td>
             <td>email</td>
             <td>Cliente</td>
+            <td>RFC</td>
             <td>Teléfono</td>
             <td>Dirección</td>
             <td>Acciones</td>
@@ -23,6 +24,7 @@
              echo "<td>".$dato['usuario']."</td>";
              echo "<td>".$dato['correo']."</td>";
              echo "<td>".$dato['nombre']."</td>";
+             echo "<td>".$dato['RFC']."</td>";
              echo "<td>".$dato['telefono']."</td>";
              echo "<td>".$dato['direccion']."</td>";
              echo "<td> <button onclick='editar(".$dato['id_usuario'].")'>Editar</button><br>
