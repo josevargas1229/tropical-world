@@ -11,15 +11,12 @@ include_once('app/Model/UserModel.php');
             include_once("app/View/PlantillaView.php");
         }
     
-    
         //creamos el metodo para manadar a llamar a la vista de agregar usuario
         public function CallFormAdd(){
             $modelo=new UserModel();
             $niveles=$modelo->getNivel();
             $modelo=new UserModel();
             $localidades=$modelo->getLocalidad();
-            $modelo=new UserModel();
-            $colonias=$modelo->getColonia();
             $vista='app/View/admin/users/AddUserView.php';
             include_once('app/View/PlantillaView.php');
         }

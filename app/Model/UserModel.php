@@ -184,7 +184,7 @@
         //método para insertar un usuario
         public function insertUser($userData){
             //paso1: creamos la consulta
-            $sql="CALL add_user('".$userData['usuario']."','".$userData['correo']."','".$userData['contrasena']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",".$userData['id_localidad'].")";
+            $sql="CALL userx('".$userData['usuario']."','".$userData['correo']."','".$userData['contrasena']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['rfc']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",'','add')";
             //paso2: conectamos a la base de datos
             $connection=$this->dbconnection->getConnection();
             //paso3: ejecutamos la consulta
