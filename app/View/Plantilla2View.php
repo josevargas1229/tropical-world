@@ -13,9 +13,9 @@
             <ul>
                 <li><a href="http://localhost/proyecto/">Inicio</a></li>
                 <li><a href="http://localhost/proyecto/?c=ProductsController&m=index">Productos</a></li>
-                <li><a href="http://localhost/proyecto/?c=OrderController&m=index">Pedidos</a></li>
+                
                 <li><a href="http://localhost/proyecto/?c=AboutController&m=index">Acerca de</a></li>
-                <li><a href="http://localhost/proyecto/?c=UserController&m=index">Usuarios</a></li>
+                
                 <li><a href="http://localhost/proyecto/?c=UserController&m=CallFormLogin">login</a></li>
             </ul>
         </nav>
