@@ -162,7 +162,7 @@
         //método para validar un logueo (usuario y contraseña)
         public function getCredentials($us,$ps){
             //paso1: creamos la consulta
-            $sql="SELECT * FROM usuarios WHERE nombre=".$us ."AND contrasena=".$ps;
+            $sql="SELECT * FROM usuarios WHERE nombre='".$us ."' AND contrasena='".$ps."';";
             //paso2: conectamos a la base de datos
             $connection=$this->dbconnection->getConnection();
             //paso3: ejecutamos la consulta
@@ -201,7 +201,7 @@
         //método para editar un usuario
         public function updateUser($userData){
             //paso1: creamos la consulta
-            $sql="CALL userx('','','".$userData['contrasena']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['rfc']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",".$userData['id'].",'edit')";        
+            $sql="CALL userx('','','".$userData['contrasena']."','".$userData['avatar']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['rfc']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",".$userData['id'].",'edit')";        
             //paso2: conectamos a la base de datos
             $connection=$this->dbconnection->getConnection();
             //paso3: ejecutamos la consulta
@@ -220,7 +220,7 @@
         //método para insertar un usuario
         public function insertUser($userData){
             //paso1: creamos la consulta
-            $sql="CALL userx('".$userData['usuario']."','".$userData['correo']."','".$userData['contrasena']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['rfc']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",'','add')";
+            $sql="CALL userx('".$userData['usuario']."','".$userData['correo']."','".$userData['contrasena']."','".$userData['avatar']."','".$userData['cliente']."','".$userData['aMaterno']."','".$userData['aPaterno']."','".$userData['rfc']."','".$userData['telefono']."','".$userData['calle']."','".$userData['nInt']."','".$userData['nExt']."',".$userData['id_colonia'].",'','add')";
             //paso2: conectamos a la base de datos
             $connection=$this->dbconnection->getConnection();
             //paso3: ejecutamos la consulta

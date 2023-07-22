@@ -1,10 +1,105 @@
-<div>
-    <h2>Welcome to the new coffee experience</h2>
+<div class="container-homeview">
+  <section id="container-slider">
+    <a href="#" class="arrowPrev"><i class="fas fa-chevron-circle-left"></i></a>
+    <a href="#" class="arrowNext"><i class="fas fa-chevron-circle-right"></i></a>
+    <ul class="listslider">
+      <li><a itlist="itList_0" href="#" class="item-select-slid"></a></li>
+      <li><a itlist="itList_1" href="#"></a></li>
+      <li><a itlist="itList_2" href="#"></a></li>
+    </ul>
+    <ul id="slider">
+      <li style="background-image: url('src/img/project/1.png'); z-index:0; opacity: 1;">
+        <div class="content_slider">
+          <div>
+            <h2>Imagen 1</h2>
+            <p>La cajeta de mango es un producto artesanal y delicioso que deleitará el paladar con su inigualable sabor tropical.</p>
+          </div>
+        </div>
+      </li>
+      <li style="background-image: url('src/img/project/2.jpg'); ">
+        <div class="content_slider">
+          <div>
+            <h2>Imagen 2</h2>
+            <p>Elaborado con mangos locales de alta calidad, ofrece una extraordinaria experiencia gustativa.</p>
+          </div>
+        </div>
+      </li>
+      <li style="background-image: url('src/img/project/3.jpg'); ">
+        <div class="content_slider">
+          <div>
+            <h2>Imagen 3</h2>
+            <p>Los consumidores pueden disfrutar de la frescura y de la esencia de los mangos de la región en cada bocado.</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var arrowPrev = document.querySelector('.arrowPrev');
+    var arrowNext = document.querySelector('.arrowNext');
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, perspiciatis natus quos hic ut sit odio labore tenetur. Ratione fuga excepturi sed ut. Maxime, nisi iste. Perferendis animi numquam quam Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, omnis magnam quo iste rem vero praesentium, placeat magni porro aut cupiditate voluptate quidem labore ab aperiam consectetur odit a? Nesciunt? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis impedit corrupti aspernatur facere ullam commodi cumque alias dolores eius maxime ex explicabo blanditiis rerum, optio saepe eligendi. Voluptates, nostrum eius? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex maxime dolorem alias error exercitationem ipsum autem? Perspiciatis recusandae, assumenda ad quis omnis nulla molestias iure earum voluptatem, explicabo deleniti molestiae.</p>
-    <p>Página principal</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor voluptatibus reprehenderit, dolorem, enim unde, voluptas facilis aliquid eius iusto nemo necessitatibus. Veniam, deserunt. Blanditiis iure quos, minus vero reprehenderit dolore.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat architecto unde omnis error tempora. Temporibus itaque id obcaecati! Nam necessitatibus ut iusto rerum saepe illo earum nostrum esse dolores nesciunt.</p>
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor voluptatibus reprehenderit, dolorem, enim unde, voluptas facilis aliquid eius iusto nemo necessitatibus. Veniam, deserunt. Blanditiis iure quos, minus vero reprehenderit dolore.</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat architecto unde omnis error tempora. Temporibus itaque id obcaecati! Nam necessitatibus ut iusto rerum saepe illo earum nostrum esse dolores nesciunt.</p>
+    if (arrowPrev && arrowNext) {
+      arrowPrev.addEventListener('click', function(e) {
+        e.preventDefault();
+        funcionEjecutar('anterior');
+      });
+
+      arrowNext.addEventListener('click', function(e) {
+        e.preventDefault();
+        funcionEjecutar('siguiente');
+      });
+    }
+});
+    if (document.querySelector('#container-slider')) {
+      setInterval(function() {
+        funcionEjecutar('siguiente');
+      }, 5000);
+    }
+    
+    //------------------------------ LIST SLIDER -------------------------
+    if (document.querySelector('.listslider')) {
+      let links = document.querySelectorAll(".listslider li a");
+      links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          let item = this.getAttribute('itlist');
+          let arrItem = item.split("_");
+          funcionEjecutar(arrItem[1]);
+          return false;
+        });
+      });
+    }
+
+    function funcionEjecutar(side) {
+      let parentTarget = document.getElementById('slider');
+      let elements = parentTarget.getElementsByTagName('li');
+      let curElement, siguienteElement;
+      for (var i = 0; i < elements.length; i++) {
+        if (elements[i].style.opacity == 1) {
+          curElement = i;
+          break;
+        }
+      }
+      if (side == 'anterior' || side == 'siguiente') {
+        if (side == "anterior") {
+          siguienteElement = (curElement == 0) ? elements.length - 1 : curElement - 1;
+        } else {
+          siguienteElement = (curElement == elements.length - 1) ? 0 : curElement + 1;
+        }
+      } else {
+        siguienteElement = side;
+        side = (curElement > siguienteElement) ? 'anterior' : 'siguiente';
+      }
+
+      //PUNTOS INFERIORES
+      let elementSel = document.getElementsByClassName("listslider")[0].getElementsByTagName("a");
+      elementSel[curElement].classList.remove("item-select-slid");
+      elementSel[siguienteElement].classList.add("item-select-slid");
+      elements[curElement].style.opacity = 0;
+      elements[curElement].style.zIndex = 0;
+      elements[siguienteElement].style.opacity = 1;
+      elements[siguienteElement].style.zIndex = 1;
+    }
+  </script>
 </div>
