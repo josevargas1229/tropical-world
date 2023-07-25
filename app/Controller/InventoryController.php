@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('app/Model/InventoryModel.php');
     class InventoryController{
         private $vista;
@@ -7,7 +8,6 @@ include_once('app/Model/InventoryModel.php');
             $modelo=new InventoryModel();
             $datos=$modelo->getAll();
             
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
                 $vista="app/View/admin/inventory/IndexProductsView.php";
@@ -23,8 +23,6 @@ include_once('app/Model/InventoryModel.php');
             $porciones=$modelo->getPorciones();
             $modelo=new InventoryModel();
             $presentaciones=$modelo->getPresentations();
-            
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
                 $vista='app/View/admin/inventory/AddProductsView.php';
@@ -60,7 +58,7 @@ include_once('app/Model/InventoryModel.php');
                         //definimos el tamaño de la imagen a cargar
                         $tamanomax=3*1024*1024;
                         if($tamanoArchivo>$tamanomax){
-                            echo "Ya mejor sube un video o una lona nmms";
+                            echo "Ya mejor sube un video o una lona";
                             exit;
                         }
                         //definimos el nombre que va a tener nuestro archivo
@@ -95,8 +93,6 @@ include_once('app/Model/InventoryModel.php');
                 $modelo=new InventoryModel();
                 $presentaciones=$modelo->getPresentations();
                 //llamamos a la vista de editar usuario
-                
-                session_start();
                 if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
                 //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
                     $vista='app/View/admin/inventory/EditProductsView.php';
@@ -135,7 +131,7 @@ include_once('app/Model/InventoryModel.php');
                     //definimos el tamaño de la imagen a cargar
                     $tamanomax=3*1024*1024;
                     if($tamanoArchivo>$tamanomax){
-                        echo "Ya mejor sube un video o una lona nmms";
+                        echo "Ya mejor sube un video o una lona";
                         exit;
                     }
                     //definimos el nombre que va a tener nuestro archivo

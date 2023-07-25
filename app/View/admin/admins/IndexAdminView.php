@@ -1,9 +1,7 @@
 <div class="content-userView">
     <br>
-    <p>
-    <!--Agregamos enlace para agregar un nuevo usuario-->
-    <a href="http://localhost/proyecto/?c=UserController&m=CallFormAdd">Agregar nuevo usuario</a>
-  </p><br>
+    <h2>Control de administradores</h2>
+    <br>
   <div class="tbl-header">
   <table>
     <thead>
@@ -32,7 +30,7 @@
              echo "<td>".$dato['telefono']."</td>";
              echo "<td>".$dato['direccion']."</td>";
              echo "<td> <button onclick='editar(".$dato['id_usuario'].")' class='btn-3d'>Editar</button><br>
-            <button onclick='eliminar(".$dato['id_usuario'].")' class='btn-3d'>Eliminar</button> </td>";
+            <button onclick='eliminar(".$dato['id_usuario'].")' class='btn-3d'>Eliminar</button> </td><button onclick='degradar(".$dato['id_usuario'].")' class='btn-3d'>Degradar</button> </td>";
              echo "</tr>";
             }
         ?>
@@ -45,12 +43,16 @@
     function eliminar(id){
       if(confirm("¿Desea eliminar el usuario?")){
         window.location.href="http://localhost/proyecto/?c=UserController&m=Delete&id="+id;
-        
       }
     }
     //creamos la funcion para editar un usuario por medio de su id
     function editar(id){
       window.location.href="http://localhost/proyecto/?c=UserController&m=CallFormEdit&id="+id;
+    }
+    function degradar(id){
+      if(confirm("¿Desea eliminar el usuario?")){
+        window.location.href="http://localhost/proyecto/?c=UserController&m=InClient&id="+id;
+      }
     }
     </script>
 </div>

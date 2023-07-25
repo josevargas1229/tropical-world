@@ -17,12 +17,12 @@
       <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="<?=$cliente['nombre']  ?>" class="form-style"/>
     </p>
     <p>
-      <label for="aMaterno">Apellido Materno : </label><br />
-      <input type="text" name="aMaterno" id="aMaterno" placeholder="Apellido materno" value="<?=$cliente['aMaterno']  ?>" class="form-style"/>
-    </p>
-    <p>
       <label for="aPaterno">Apellido Paterno : </label><br />
       <input type="text" name="aPaterno" id="aPaterno" placeholder="Apellido paterno" value="<?=$cliente['aPaterno']  ?>" class="form-style"/>
+    </p>
+    <p>
+      <label for="aMaterno">Apellido Materno : </label><br />
+      <input type="text" name="aMaterno" id="aMaterno" placeholder="Apellido materno" value="<?=$cliente['aMaterno']  ?>" class="form-style"/>
     </p>
     <p>
       <label for="rfc">RFC : </label><br />

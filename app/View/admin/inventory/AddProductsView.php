@@ -1,6 +1,6 @@
 <div>
   <div class="form-content">
-    <h2>Agregar nuevo producto</h2>
+    <h2>Agregar un nuevo producto</h2>
   <!--en el metodo action de este formulario llamaremos al metodo Add de nuestro controlador -->
   <form 
   action="http://localhost/proyecto/?c=InventoryController&m=Add" 
@@ -18,7 +18,6 @@
                     minlength="2"
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+" class="form-style"/>
     </p>
-    
     <p>
       <label for="porcion">Porción : </label><br>
       <select name="porcion" id="porcion" class="form-style">

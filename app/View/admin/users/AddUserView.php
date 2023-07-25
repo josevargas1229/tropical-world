@@ -12,14 +12,14 @@
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+" class="form-style"/>
     </p>
     <p>
-      <label for="aMaterno">Apellido Materno : </label><br />
-      <input type="text" name="aMaterno" id="aMaterno" placeholder="Apellido materno" required
+      <label for="aPaterno">Apellido Paterno : </label><br />
+      <input type="text" name="aPaterno" id="aPaterno" placeholder="Apellido paterno" required
                     minlength="2"
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+" class="form-style"/>
     </p>
     <p>
-      <label for="aPaterno">Apellido Paterno : </label><br />
-      <input type="text" name="aPaterno" id="aPaterno" placeholder="Apellido paterno" required
+      <label for="aMaterno">Apellido Materno : </label><br />
+      <input type="text" name="aMaterno" id="aMaterno" placeholder="Apellido materno" required
                     minlength="2"
                     pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ ]+" class="form-style"/>
     </p>

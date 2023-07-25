@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('app/Model/UserModel.php');
     class UserController{
         private $vista;
@@ -7,7 +8,6 @@ include_once('app/Model/UserModel.php');
         public function index(){
             $modelo=new UserModel();
             $datos=$modelo->getAll();
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
                 $vista="app/View/admin/users/IndexUserView.php";
@@ -25,7 +25,6 @@ include_once('app/Model/UserModel.php');
             $niveles=$modelo->getNivel();
             $modelo=new UserModel();
             $localidades=$modelo->getLocalidad();
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
                 $vista='app/View/admin/users/AddUserView.php';
@@ -82,7 +81,7 @@ include_once('app/Model/UserModel.php');
                         //definimos el tamaño de la imagen a cargar
                         $tamanomax=3*1024*1024;
                         if($tamanoArchivo>$tamanomax){
-                            echo "Ya mejor sube un video o una lona nmms";
+                            echo "Ya mejor sube un video o una lona";
                             exit;
                         }
                         //definimos el nombre que va a tener nuestro archivo
@@ -122,8 +121,6 @@ include_once('app/Model/UserModel.php');
                 $modelo=new UserModel();
                 $colonias=$modelo->getColoniaByID($direccion['id_colonia']);
                 //llamamos a la vista de editar usuario
-                
-                session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
                 $vista='app/View/admin/users/EditUserView.php';
@@ -169,7 +166,7 @@ include_once('app/Model/UserModel.php');
                     //definimos el tamaño de la imagen a cargar
                     $tamanomax=3*1024*1024;
                     if($tamanoArchivo>$tamanomax){
-                        echo "Ya mejor sube un video o una lona nmms";
+                        echo "Ya mejor sube un video o una lona";
                         exit;
                     }
                     //definimos el nombre que va a tener nuestro archivo
@@ -219,8 +216,6 @@ include_once('app/Model/UserModel.php');
             }
         }
         public function CallFormLogin(){
-            
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
             $vista="app/View/admin/LoginView.php";

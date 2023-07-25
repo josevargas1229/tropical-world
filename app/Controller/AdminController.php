@@ -1,22 +1,22 @@
 <?php
+session_start();
+include_once('app/Model/AdminModel.php');
 include_once('app/Model/UserModel.php');
-    class UserController{
+    class AdminController{
         private $vista;
         private $modelo;
         
         public function index(){
-            $modelo=new UserModel();
+            $modelo=new AdminModel();
             $datos=$modelo->getAll();
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
-                $vista="app/View/admin/users/IndexUserView.php";
+                $vista="app/View/admin/admins/IndexAdminView.php";
                 include_once("app/View/PlantillaView.php");
             }else{
                 $vista="app/View/HomeView.php";
                 include_once("app/View/Plantilla2View.php");
             }
-            
         }
     
         //creamos el metodo para manadar a llamar a la vista de agregar usuario
@@ -25,17 +25,14 @@ include_once('app/Model/UserModel.php');
             $niveles=$modelo->getNivel();
             $modelo=new UserModel();
             $localidades=$modelo->getLocalidad();
-            session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
-                $vista='app/View/admin/users/AddUserView.php';
+                $vista='app/View/admin/admins/AddUserView.php';
                 include_once("app/View/PlantillaView.php");
             }else{
-                $vista='app/View/admin/users/AddUserView.php';
+                $vista='app/View/HomeView.php';
                 include_once("app/View/Plantilla2View.php");
             }
-            
-            
         }
         public function getColonias(){
             if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -82,7 +79,7 @@ include_once('app/Model/UserModel.php');
                         //definimos el tamaño de la imagen a cargar
                         $tamanomax=3*1024*1024;
                         if($tamanoArchivo>$tamanomax){
-                            echo "Ya mejor sube un video o una lona nmms";
+                            echo "Ya mejor sube un video o una lona";
                             exit;
                         }
                         //definimos el nombre que va a tener nuestro archivo
@@ -96,11 +93,11 @@ include_once('app/Model/UserModel.php');
                         $datos['avatar']=$nombreArchivo;
                     }
                     //llamamos al metodo del modelo que agrega al usuario a la base de datos
-                    $modelo=new UserModel();
+                    $modelo=new AdminModel();
                     $res=$modelo->insertUser($datos);
                     //podríamos poner un if que dependiendo de si se insertó o no va a redireccionar a la pantalla de index con los datos actualizados o me regresa al formulario para reintentar
                     //redireccionamos al index de usuarios
-                    header("Location:http://localhost/proyecto/?c=UserController&m=index");
+                    header("Location:http://localhost/proyecto/?c=AdminController&m=index");
             }
         }
 
@@ -111,22 +108,20 @@ include_once('app/Model/UserModel.php');
                 //obtenemos el id del usuario a editar
                 $id=$_GET['id'];
                 //llamamos al metodo del modelo que obtiene los datos del usuario a editar
-                $modelo=new UserModel();
+                $modelo=new AdminModel();
                 $cliente=$modelo->getClienteById($id);
-                $modelo=new UserModel();
+                $modelo=new AdminModel();
                 $user=$modelo->getUserById($id);
-                $modelo=new UserModel();
+                $modelo=new AdminModel();
                 $localidades=$modelo->getLocalidad();
-                $modelo=new UserModel();
+                $modelo=new AdminModel();
                 $direccion=$modelo->getDireccionByID($cliente['id_direccion']);
-                $modelo=new UserModel();
+                $modelo=new AdminModel();
                 $colonias=$modelo->getColoniaByID($direccion['id_colonia']);
                 //llamamos a la vista de editar usuario
-                
-                session_start();
             if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
             //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
-                $vista='app/View/admin/users/EditUserView.php';
+                $vista='app/View/admin/admins/EditAdminView.php';
                 include_once("app/View/PlantillaView.php");
             }else{
                 $vista="app/View/HomeView.php";
@@ -169,7 +164,7 @@ include_once('app/Model/UserModel.php');
                     //definimos el tamaño de la imagen a cargar
                     $tamanomax=3*1024*1024;
                     if($tamanoArchivo>$tamanomax){
-                        echo "Ya mejor sube un video o una lona nmms";
+                        echo "Ya mejor sube un video o una lona";
                         exit;
                     }
                     //definimos el nombre que va a tener nuestro archivo
@@ -194,7 +189,7 @@ include_once('app/Model/UserModel.php');
                 $modelo=new UserModel();
                 $modelo->updateUser($datos);
                 //redireccionamos al index de usuarios
-                header("Location:http://localhost/proyecto/?c=UserController&m=index");
+                header("Location:http://localhost/proyecto/?c=AdminController&m=index");
             }
         }
 
@@ -215,44 +210,8 @@ include_once('app/Model/UserModel.php');
                     unlink('app/src/img/avatars/'.$anterior['avatar']);
                 }
                 //redireccionamos al index de usuarios
-                header("Location:http://localhost/proyecto/?c=UserController&m=index");
+                header("Location:http://localhost/proyecto/?c=AdminController&m=index");
             }
-        }
-        public function CallFormLogin(){
-            
-            session_start();
-            if(isset($_SESSION['logedin'])&&$_SESSION['logedin']==true){
-            //incluimos al archivo de la plantilla para que éste sea llamado y lleve como variable a vista
-            $vista="app/View/admin/LoginView.php";
-                include_once("app/View/PlantillaView.php");
-            }else{
-                $vista="app/View/admin/LoginView.php";
-                include_once("app/View/Plantilla2View.php");
-            }
-        }
-        public function Login(){
-            if($_SERVER['REQUEST_METHOD']=='POST'){
-                $this->modelo=new UserModel();
-                $usuario=$this->modelo->getCredentials($_POST['user'],$_POST['password']);
-                if($usuario==false){
-                    $vista="app/View/admin/LoginView.php";
-                    include_once("app/View/Plantilla2View.php");
-                }else{
-                    session_start();
-                    $_SESSION['logedin']=true;
-                    $_SESSION['avatar']=$usuario['avatar'];
-                    $_SESSION['nombre']=$usuario['nombre'];
-
-                    $vista="app/View/HomeView.php";
-                    include_once("app/View/PlantillaView.php");
-                }
-            }
-        }
-        public function Logout(){
-            session_start();
-            session_destroy(); // Destruye la sesión actual
-            header("Location: http://localhost/proyecto/?c=DefaultController&m=index"); // Redirige al usuario a la página de inicio de sesión
-            exit();
         }
     }
 ?>
