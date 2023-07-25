@@ -11,7 +11,7 @@
       <li style="background-image: url('src/img/project/1.png'); z-index:0; opacity: 1;">
         <div class="content_slider">
           <div>
-            <h2>Imagen 1</h2>
+            <h2>Sabor extraordinario</h2>
             <p>La cajeta de mango es un producto artesanal y delicioso que deleitará el paladar con su inigualable sabor tropical.</p>
           </div>
         </div>
@@ -19,7 +19,7 @@
       <li style="background-image: url('src/img/project/2.jpg'); ">
         <div class="content_slider">
           <div>
-            <h2>Imagen 2</h2>
+            <h2>Calidad</h2>
             <p>Elaborado con mangos locales de alta calidad, ofrece una extraordinaria experiencia gustativa.</p>
           </div>
         </div>
@@ -27,7 +27,7 @@
       <li style="background-image: url('src/img/project/3.jpg'); ">
         <div class="content_slider">
           <div>
-            <h2>Imagen 3</h2>
+            <h2>Único</h2>
             <p>Los consumidores pueden disfrutar de la frescura y de la esencia de los mangos de la región en cada bocado.</p>
           </div>
         </div>

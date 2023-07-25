@@ -14,7 +14,25 @@
         //vamos a crear todos loss métodos que requieran conexión a la base de datos en la instancia user
         public function getAll(){
             //creamos la consulta a ejecutar
-            $sql='SELECT * FROM users';
+            $sql='SELECT * FROM clients';
+            //obtenemos la conexión a la base de datos
+            $connection=$this->dbconnection->getConnection();
+            //ejecutar la consulta
+            $result=$connection->query($sql);
+            //creamos un arreglo para manipular a result
+            $users=array();
+            //vamos a descomponer a result desde un ciclo
+            while($user=$result->fetch_assoc()){
+                $users[]=$user;
+            }
+            //cerramos la conexión a la base de datos
+            $this->dbconnection->closeConnection();
+            //arrojamos la respuesta de nuestra consulta "users"
+            return $users;
+        }
+        public function getAdmin(){
+            //creamos la consulta a ejecutar
+            $sql='SELECT * FROM admins';
             //obtenemos la conexión a la base de datos
             $connection=$this->dbconnection->getConnection();
             //ejecutar la consulta

@@ -24,12 +24,7 @@
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link" data-toggle="dropdown" href="http://localhost/proyecto/" role="button" >Inicio</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                  </div>
+                  
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="http://localhost/proyecto/?c=ProductsController&m=index">Productos</a>
@@ -58,6 +53,10 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="http://localhost/proyecto/?c=UserController&m=index">Usuarios</a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Clientes</a>
+                    <a class="dropdown-item" href="#">Administradores</a>
+                  </div>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="http://localhost/proyecto/?c=AboutController&m=index">Acerca de</a>
@@ -91,8 +90,14 @@
                   ?>
                 </button>
                 <div class="menu-dropdown" id="menu">
-                  <a class="item-dropdown" href="http://localhost/proyecto/?c=UserController&m=Logout">Cerrar sesión</a>
-                  <a class="item-dropdown" href="#">Configuración</a>
+                  <ul class="dropdown-navbar">
+                    <li class="dropdown-item">
+                    <a class="dropdown-link" href="#">Configuración</a>
+                    </li>
+                    <li class="dropdown-item">
+                    <a class="dropdown-link" href="http://localhost/proyecto/?c=UserController&m=Logout">Cerrar sesión</a>
+                    </li>
+                  </ul>
                   <!-- Otros elementos de menú -->
                 </div>
               </div>
@@ -115,10 +120,10 @@
         <img src="src/img/project/logo.png" alt="logo">
         <p class="footer-links">
           <a href="http://localhost/proyecto/" class="link-1">Inicio</a>
-          <a href="#">Blog</a>
           <a href="http://localhost/proyecto/?c=AboutController&m=index">Acerca de </a>
-          <a href="#">Faq</a>
-          <a href="#">Contactos</a>
+          <a href="mailto:info@cajetademango.com">Contactos</a>
+          <a href="http://localhost/proyecto/?c=AboutController&m=privacy">Aviso de privacidad</a>
+          <a href="http://localhost/proyecto/?c=AboutController&m=policy">Términos y condiciones</a>
         </p>
         <p class="footer-company-name">Tropical World © 2023</p>
       </div>
@@ -126,7 +131,7 @@
       <div class="footer-center">
         <div>
           <i class="fa fa-map-marker"></i>
-          <p><span>Calle Principal #123, Huejutla de Reyes, Hidalgo</p>
+          <p>Calle Principal #123, Huejutla de Reyes, Hidalgo</p>
         </div>
 
         <div>

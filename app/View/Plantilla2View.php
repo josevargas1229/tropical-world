@@ -6,6 +6,7 @@
     <title>Tropical World Shop</title>
     <link rel="stylesheet" href="src/style/style.css">
     <link rel="shortcut icon" href="src/img/project/logo_icono.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/8fc0695688.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header class="start-header navbar-light">
@@ -22,12 +23,7 @@
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link"  href="http://localhost/proyecto/" role="button" >Inicio</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                  </div>
+                  
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="http://localhost/proyecto/?c=ProductsController&m=index">Productos</a>
@@ -39,7 +35,7 @@
                   <a class="nav-link" href="http://localhost/proyecto/?c=UserController&m=CallFormLogin">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/proyecto/?c=UserController&m=CallFormLogin">Registro</a>
+                  <a class="nav-link" href="http://localhost/proyecto/?c=UserController&m=CallFormAdd">Registro</a>
                 </li>
               </ul>
               
@@ -60,11 +56,11 @@
         
         <img src="src/img/project/logo.png" alt="logo">
         <p class="footer-links">
-          <a href="#" class="link-1">Inicio</a>
-          <a href="#">Blog</a>
-          <a href="#">Acerca de </a>
-          <a href="#">Faq</a>
-          <a href="#">Contactos</a>
+          <a href="http://localhost/proyecto/" class="link-1">Inicio</a>
+          <a href="http://localhost/proyecto/?c=AboutController&m=index">Acerca de </a>
+          <a href="mailto:info@cajetademango.com">Contactos</a>
+          <a href="http://localhost/proyecto/?c=AboutController&m=privacy">Aviso de privacidad</a>
+          <a href="http://localhost/proyecto/?c=AboutController&m=policy">Términos y condiciones</a>
         </p>
         <p class="footer-company-name">Tropical World © 2023</p>
       </div>
@@ -72,7 +68,7 @@
       <div class="footer-center">
         <div>
           <i class="fa fa-map-marker"></i>
-          <p><span>Calle Principal #123, Huejutla de Reyes, Hidalgo</p>
+          <p>Calle Principal #123, Huejutla de Reyes, Hidalgo</p>
         </div>
 
         <div>
@@ -98,7 +94,7 @@
           <a href="#"><i class="fa fa-facebook"></i></a>
           <a href="#"><i class="fa fa-twitter"></i></a>
           <a href="#"><i class="fa fa-linkedin"></i></a>
-          <a href="#"><i class="fa fa-github"></i></a>
+          <a href="https://github.com/josevargas1229/tropical-world"><i class="fa fa-github"></i></a>
 
         </div>
 
